@@ -74,8 +74,8 @@ publishing {
 				url.set("https://github.com/elex-project/harpy")
 				licenses {
 					license {
-						name.set("licenseName")
-						url.set("licenseUrl")
+						name.set("BSD 3-Clause License")
+						url.set("https://github.com/elex-project/abraxas/blob/main/LICENSE")
 					}
 				}
 				developers {

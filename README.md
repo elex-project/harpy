@@ -2,6 +2,20 @@
 
 HTTP Companion
 
+```kotlin
+repositories {
+	mavenCentral()
+	maven {
+		name = "Github Packages"
+		url = uri("https://maven.pkg.github.com/elex-project/harpy")
+		credentials {
+			username = project.findProperty("github.username") as String
+			password = project.findProperty("github.token") as String
+		}
+	}
+}
+```
+
 ```java
 try {
     HttpGetRequest<String> request = new HttpGetRequest<>(
@@ -34,6 +48,7 @@ try {
     e.printStackTrace();
 }
 ```
+
 ---
 developed by Elex
 https://www.elex-project.com
