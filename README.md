@@ -16,6 +16,8 @@ repositories {
 }
 ```
 
+for projects with Java 9+, please consider using New Http Client, instead of HttpRequest in this package.
+
 ```java
 try {
     HttpGetRequest<String> request = new HttpGetRequest<>(
