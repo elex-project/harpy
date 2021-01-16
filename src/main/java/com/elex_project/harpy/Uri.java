@@ -125,6 +125,10 @@ public final class Uri {
 			this.uri = new Uri();
 		}
 
+		public Builder(@NotNull final String uri) {
+			this.uri = parse(uri);
+		}
+
 		public Builder scheme(final @NotNull String scheme) {
 			uri.scheme = scheme;
 			return this;
@@ -162,6 +166,26 @@ public final class Uri {
 			return this;
 		}
 
+		public Builder path(final int path) {
+			uri.path.add(String.valueOf(path));
+			return this;
+		}
+
+		public Builder path(final long path) {
+			uri.path.add(String.valueOf(path));
+			return this;
+		}
+
+		public Builder path(final float path) {
+			uri.path.add(String.valueOf(path));
+			return this;
+		}
+
+		public Builder path(final double path) {
+			uri.path.add(String.valueOf(path));
+			return this;
+		}
+
 		public Builder encodedPath(final @NotNull String path) {
 			if (Stringz.contains(path, "/")) {
 				for (final String seg : path.split("/")) {
@@ -178,8 +202,58 @@ public final class Uri {
 			return this;
 		}
 
+		public Builder query(final @NotNull String name, final int value) {
+			uri.query.put(name, String.valueOf(value));
+			return this;
+		}
+
+		public Builder query(final @NotNull String name, final long value) {
+			uri.query.put(name, String.valueOf(value));
+			return this;
+		}
+
+		public Builder query(final @NotNull String name, final float value) {
+			uri.query.put(name, String.valueOf(value));
+			return this;
+		}
+
+		public Builder query(final @NotNull String name, final double value) {
+			uri.query.put(name, String.valueOf(value));
+			return this;
+		}
+
+		public Builder query(final @NotNull String name, final boolean value) {
+			uri.query.put(name, String.valueOf(value));
+			return this;
+		}
+
 		public Builder encodedQuery(final @NotNull String name, final @Nullable String value) {
 			uri.query.put(encode(name), (null == value) ? null : encode(value));
+			return this;
+		}
+
+		public Builder encodedQuery(final @NotNull String name, final int value) {
+			uri.query.put(encode(name), String.valueOf(value));
+			return this;
+		}
+
+		public Builder encodedQuery(final @NotNull String name, final long value) {
+			uri.query.put(encode(name), String.valueOf(value));
+			return this;
+		}
+
+		public Builder encodedQuery(final @NotNull String name, final float value) {
+			uri.query.put(encode(name), String.valueOf(value));
+			return this;
+		}
+
+		public Builder encodedQuery(final @NotNull String name, final double value) {
+			uri.query.put(encode(name), String.valueOf(value));
+			return this;
+		}
+
+		public Builder encodedQuery(final @NotNull String name, final boolean value) {
+			uri.query.put(encode(name), String.valueOf(value));
 			return this;
 		}
 
@@ -202,7 +276,9 @@ public final class Uri {
 	public static Builder builder() {
 		return new Builder();
 	}
-
+	public static Builder builder(@NotNull final String uri) {
+		return new Builder(uri);
+	}
 	/**
 	 * parse uri string int uri object
 	 *
@@ -211,7 +287,7 @@ public final class Uri {
 	 */
 	public static Uri parse(final @NotNull String uri) {
 		final Matcher matcher = URI_PATTERN.matcher(uri);
-		log.info(matcher.toString());
+		//log.info(matcher.toString());
 		if (!matcher.matches()) throw new IllegalArgumentException("URI pattern mismatches.");
 
 		final Uri object = new Uri();
