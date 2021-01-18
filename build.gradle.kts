@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.elex-project"
-version = "2.1.1"
+version = "2.1.2"
 description = "Http Companion"
 
 repositories {
@@ -69,7 +69,7 @@ publishing {
 		create<MavenPublication>("mavenJava") {
 			from(components["java"])
 			pom {
-				name.set(project.name)
+				name.set("Http Companion")
 				description.set(project.description)
 				url.set("https://github.com/elex-project/harpy")
 				licenses {
@@ -121,7 +121,7 @@ dependencies {
 	implementation("org.slf4j:slf4j-api:1.7.30")
 	implementation("org.jetbrains:annotations:20.1.0")
 
-	implementation("com.elex-project:abraxas:4.0.2")
+	implementation("com.elex-project:abraxas:4.0.3")
 	implementation("org.json:json:20201115")
 
 	compileOnly("org.projectlombok:lombok:1.18.16")
@@ -132,4 +132,3 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 }
-
