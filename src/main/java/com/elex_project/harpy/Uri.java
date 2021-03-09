@@ -40,6 +40,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -276,9 +277,11 @@ public final class Uri {
 	public static Builder builder() {
 		return new Builder();
 	}
+
 	public static Builder builder(@NotNull final String uri) {
 		return new Builder(uri);
 	}
+
 	/**
 	 * parse uri string int uri object
 	 *
@@ -337,5 +340,15 @@ public final class Uri {
 
 	public URI toURI() {
 		return URI.create(toString());
+	}
+
+	public static Uri of(final URI uri){
+		return Uri.parse(uri.toString());
+	}
+
+	public static boolean equals(final URI a, final URI b) {
+		return a.getScheme().equals(b.getScheme()) &&
+				a.getHost().equals(b.getHost()) &&
+				Paths.get(a.getPath()).equals(Paths.get(b.getPath()));
 	}
 }

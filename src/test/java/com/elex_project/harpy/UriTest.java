@@ -32,6 +32,7 @@
 
 package com.elex_project.harpy;
 
+import com.elex_project.abraxas.Console;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +40,44 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 class UriTest {
+	private static final String[] SAMPLES = {
+			"http://www.my.work.com/",
+			"http://www.my.uni.edu/in+fo/matriculation/enroling.html",
+			"http://info.my.org/About Us/Phonebook",
+			"http://www.library.my.town.va.us/Catalogue/76523471236%2Fwen44--4.98",
+			"http://www.my.org/462F4F2D4241522A314159265358979323846",
+			"http://www.w3.org:8000/안녕/test",
+			"http://www.myu.edu/org/admin/people#andy",
+			"http://info.my.org/AboutUs/Index/Phonebook?dobbins",
+			"http://www.w3.org/RDB/EMP?*%20where%20name%%3Ddobbins",
+			"http://www.baeldung.com?key1=value+1&key2=value%40%21%242&key3=value%253"
+	};
+	@Test
+	void encode() {
+		for (String uri : SAMPLES){
+			Console.writeLine(Uri.encode(uri));
+		}
+	}
 
+	@Test
+	void decode() {
+	}
+
+	@Test
+	void newUri() {
+		String uri = new Uri.Builder().scheme("https").host("example.com").path("api").path("v1")
+				.query("query", "Hello").query("sort", "desc")
+				.fragment("section_1")
+				.toString();
+		Console.writeLine(uri);
+	}
+
+	@Test
+	void parse() {
+		final String sample1 = "https://user@example.com:8080/api/v1?query=Hello&sort=desc#section_1";
+		Uri uri = Uri.parse(sample1);
+		Console.writeLine("URI: " + uri.toString());
+	}
 	@Test
 	void test(){
 		Uri.builder()
